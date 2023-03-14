@@ -1,1 +1,2 @@
 C:\Users\Teun\Documents\OpenXRResearch\OpenXRConsumer\OpenXRConsumerConsole\x64\Debug\openxr_loader.dll
+C:\Users\Teun\Documents\OpenXRResearch\OpenXRConsumer\OpenXRConsumerConsole\OpenXRExperimentation\x64\Debug\openxr_loader.dll

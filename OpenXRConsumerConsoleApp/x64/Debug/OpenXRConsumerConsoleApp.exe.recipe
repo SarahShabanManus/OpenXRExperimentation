@@ -2,12 +2,12 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\Teun\Documents\OpenXRResearch\OpenXRConsumer\OpenXRConsumerConsole\x64\Debug\OpenXRConsumerConsoleApp.exe</FullPath>
+      <FullPath>C:\Users\Teun\Documents\OpenXRResearch\OpenXRConsumer\OpenXRConsumerConsole\OpenXRExperimentation\x64\Debug\OpenXRConsumerConsoleApp.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles>
     <ContentFile>
-      <FullPath>C:\Users\Teun\Documents\OpenXRResearch\OpenXRConsumer\OpenXRConsumerConsole\packages\OpenXR.Loader.1.0.10.2\native\x64\release\bin\openxr_loader.dll</FullPath>
+      <FullPath>C:\Users\Teun\Documents\OpenXRResearch\OpenXRConsumer\OpenXRConsumerConsole\OpenXRExperimentation\packages\OpenXR.Loader.1.0.10.2\native\x64\release\bin\openxr_loader.dll</FullPath>
     </ContentFile>
   </ContentFiles>
   <SatelliteDlls />
