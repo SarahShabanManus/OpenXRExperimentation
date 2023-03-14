@@ -4,6 +4,7 @@
 #include <iostream>
 #include "loader_interfaces.h"
 #include <openxr/openxr.h>
+#include <openxr/openxr_platform.h>
 
 static void print_api_layers();
 static void PrintInstanceExtensions(char* p_APILayer);

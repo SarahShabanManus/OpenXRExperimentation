@@ -74,8 +74,8 @@ static void PrintInstanceExtensions(char* p_APILayer)
 static void CreateInstance()
 {
 	uint32_t t_ApiCount = 0;
-	XrResult result = xrEnumerateApiLayerProperties(0, &t_ApiCount, NULL);
-	if (!xr_check(NULL, result, "Failed to enumerate api layer count"))
+	XrResult t_Result = xrEnumerateApiLayerProperties(0, &t_ApiCount, NULL);
+	if (!xr_check(NULL, t_Result, "Failed to enumerate api layer count"))
 		return;
 
 	if (t_ApiCount == 0)
@@ -87,8 +87,8 @@ static void CreateInstance()
 		t_ApiLayerProps[i].next = NULL;
 	}
 
-	result = xrEnumerateApiLayerProperties(t_ApiCount, &t_ApiCount, t_ApiLayerProps);
-	if (!xr_check(NULL, result, "Failed to enumerate api layers"))
+	t_Result = xrEnumerateApiLayerProperties(t_ApiCount, &t_ApiCount, t_ApiLayerProps);
+	if (!xr_check(NULL, t_Result, "Failed to enumerate api layers"))
 		return;
 
 	char** t_ApiNames = new char* [t_ApiCount];
@@ -123,26 +123,41 @@ static void CreateInstance()
 		XR_CURRENT_API_VERSION
 	};
 
-	char** t_EmptyApiLayerNames = new char* [0];
-	char** t_EmptyExtensionNames = new char* [0];
+	XrInstanceCreateInfo t_InstanceCreateInfo = { XR_TYPE_INSTANCE_CREATE_INFO };
+	t_InstanceCreateInfo.next = NULL;
+	t_InstanceCreateInfo.createFlags = 0;
+	t_InstanceCreateInfo.applicationInfo = t_ApplicationInfo;
+	t_InstanceCreateInfo.enabledApiLayerCount = t_ApiCount;
+	t_InstanceCreateInfo.enabledApiLayerNames = t_ApiNames;
+	t_InstanceCreateInfo.enabledExtensionCount = t_ExtensionCount;
+	t_InstanceCreateInfo.enabledExtensionNames = t_ExtensionNames;
 
-	XrInstanceCreateInfo* t_InstanceCreateInfo = new XrInstanceCreateInfo();
-	t_InstanceCreateInfo->type = XR_TYPE_INSTANCE_CREATE_INFO;
-	t_InstanceCreateInfo->next = NULL;
-	t_InstanceCreateInfo->createFlags = 0;
-	t_InstanceCreateInfo->applicationInfo = t_ApplicationInfo;
-	t_InstanceCreateInfo->enabledApiLayerCount = 0;
-	t_InstanceCreateInfo->enabledApiLayerNames = t_EmptyExtensionNames;
-	t_InstanceCreateInfo->enabledExtensionCount = 0;
-	t_InstanceCreateInfo->enabledExtensionNames = t_EmptyExtensionNames;
-
-	XrInstance* t_NewInstance = new XrInstance();
-	XrResult t_Result = xrCreateInstance(t_InstanceCreateInfo, t_NewInstance);
+	XrInstance t_NewInstance;
+	t_Result = xrCreateInstance(&t_InstanceCreateInfo, &t_NewInstance);
 
 	if (!xr_check(NULL, t_Result, "Failed to create instance"))
 		return;
 
+	XrSystemGetInfo t_SystemGetInfo = { XR_TYPE_SYSTEM_GET_INFO };
+	t_SystemGetInfo.next = NULL;
+	t_SystemGetInfo.formFactor = XR_FORM_FACTOR_HEAD_MOUNTED_DISPLAY;
 
+	XrSystemId t_SystemId;
+
+	t_Result = xrGetSystem(t_NewInstance, &t_SystemGetInfo, &t_SystemId);
+	if (!xr_check(NULL, t_Result, "Failed to get system"))
+		return;
+
+	XrSessionCreateInfo t_SessionCreateInfo = { XR_TYPE_SESSION_CREATE_INFO };
+	t_SessionCreateInfo.next = NULL;
+	t_SessionCreateInfo.createFlags = 0;
+	t_SessionCreateInfo.systemId = t_SystemId;
+
+	XrSession t_Session;
+
+	t_Result = xrCreateSession(t_NewInstance, &t_SessionCreateInfo, &t_Session);
+	if (!xr_check(NULL, t_Result, "Failed to create session"))
+		return;
 }
 
 // true if XrResult is a success code, else print error message and return false
