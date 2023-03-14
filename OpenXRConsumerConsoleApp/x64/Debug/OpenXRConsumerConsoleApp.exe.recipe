@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>C:\Users\Teun\Documents\OpenXRResearch\OpenXRConsumer\OpenXRConsumerConsole\x64\Debug\OpenXRConsumerConsoleApp.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>C:\Users\Teun\Documents\OpenXRResearch\OpenXRConsumer\OpenXRConsumerConsole\packages\OpenXR.Loader.1.0.10.2\native\x64\release\bin\openxr_loader.dll</FullPath>
+    </ContentFile>
+  </ContentFiles>
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>
